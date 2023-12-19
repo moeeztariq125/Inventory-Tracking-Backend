@@ -1,14 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import db from '../database'; // Import the database module
+import { IUserModelAttrs } from '../../shared/interfaces';
 
-export interface IUserModelAttrs {
-  userID: string;
-  firstName: string;
-  lastName: string;
-  dob: string;
-  role: string;
-  profilePicture: string;
-}
+
 
 class User extends Model<IUserModelAttrs> {
   declare userID: string;

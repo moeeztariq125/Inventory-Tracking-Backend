@@ -1,12 +1,8 @@
 import {DataTypes, Model} from 'sequelize';
 import db from '../database';
+import { IInventoryAttrs } from '../../shared/interfaces';
 
-export interface IInventoryAttrs {
-    id: Number;
-    Name: String;
-    Description: String;
-    Quantity: Number;
-}
+
 
 class Inventory extends Model<IInventoryAttrs> {
     declare id: Number;

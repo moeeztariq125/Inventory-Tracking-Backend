@@ -1,4 +1,5 @@
-import { IInventoryAttrs, Inventory } from "../db";
+import { IInventoryAttrs } from "../shared/interfaces";
+import {  Inventory } from "../db";
 import BaseRepository from "./Base.repo";
 
 

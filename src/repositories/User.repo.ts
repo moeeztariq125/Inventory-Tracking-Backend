@@ -1,5 +1,6 @@
 import BaseRepository from "./Base.repo";
-import { IUserModelAttrs, User } from "../db";
+import { User } from "../db";
+import { IUserModelAttrs } from "../shared/interfaces";
 
 class UserRepository extends BaseRepository<IUserModelAttrs>{
     constructor(){
