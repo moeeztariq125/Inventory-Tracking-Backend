@@ -8,7 +8,6 @@ export interface IUserModelAttrs {
   dob: string;
   role: string;
   profilePicture: string;
-  deletedAt: Date;
 }
 
 class User extends Model<IUserModelAttrs> {
@@ -18,7 +17,6 @@ class User extends Model<IUserModelAttrs> {
   declare dob: string;
   declare role: string;
   declare profilePicture: string;
-  declare deletedAt: Date;
 }
 (async () => {
   const connection = await db.getConnection();
@@ -43,10 +41,6 @@ class User extends Model<IUserModelAttrs> {
       },
       profilePicture: {
         type: DataTypes.STRING,
-      },
-      deletedAt: {
-        type: DataTypes.DATE,
-        defaultValue: null,
       },
     },
     {
