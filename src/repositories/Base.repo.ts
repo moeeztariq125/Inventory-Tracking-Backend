@@ -1,7 +1,7 @@
 import { ModelStatic, FindOptions, UpdateOptions, CreateOptions, Model, FindAttributeOptions, DestroyOptions, CountOptions } from 'sequelize'
 
 
-abstract class BaseRepository<T extends Model> {
+abstract class BaseRepository<T extends {}> {
     private model:ModelStatic<any>;
     constructor(model:ModelStatic<any>){
         this.model = model
