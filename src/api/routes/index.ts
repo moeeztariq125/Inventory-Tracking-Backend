@@ -1,0 +1,1 @@
+export {default as usersCRUDSRouter} from './Users.routes/CRUDS.routes'

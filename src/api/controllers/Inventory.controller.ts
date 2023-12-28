@@ -1,10 +1,10 @@
 import { Request, Response } from "express"
-import { usersServiceClass } from "../services"
+import {inventoryServiceClass} from "../services";
 
-class userControllerClass {
-    private usersService:usersServiceClass
-    constructor(usersService:usersServiceClass){
-        this.usersService = usersService;
+class inventoryControllerClass {
+    private inventoryService:inventoryServiceClass
+    constructor(inventoryService:inventoryServiceClass){
+        this.inventoryService = inventoryService;
     }
     async getUser(req:Request,res:Response){
         res.send('user details')
@@ -20,4 +20,4 @@ class userControllerClass {
     }
 }
 
-export default userControllerClass
+export default inventoryControllerClass

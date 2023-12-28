@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { userController } from "../../controllers";
+import { userController } from "../../../loaders/controllers";
 const router = Router();
 
 router.route('/')
@@ -7,3 +7,6 @@ router.route('/')
 .put(userController.updateUser)
 .post(userController.createUser)
 .delete(userController.deleteUser)
+
+
+export default router
