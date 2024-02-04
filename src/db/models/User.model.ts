@@ -8,9 +8,12 @@ class User extends Model<IUserModelAttrs> {
   declare userID: string;
   declare firstName: string;
   declare lastName: string;
-  declare dob: string;
+  declare dob: Date ;
   declare role: string;
   declare profilePicture: string;
+  declare email:string;
+  declare otp:string;
+  declare signupStatus:boolean
 }
 (async () => {
   const connection = await db.getConnection();
@@ -36,6 +39,15 @@ class User extends Model<IUserModelAttrs> {
       profilePicture: {
         type: DataTypes.STRING,
       },
+      email: {
+        type: DataTypes.STRING
+      },
+      otp: {
+        type: DataTypes.STRING
+      },
+      signupStatus:{
+        type: DataTypes.STRING
+      }
     },
     {
         tableName:"Users",
