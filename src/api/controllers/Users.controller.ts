@@ -18,6 +18,9 @@ class userControllerClass {
     async deleteUser(req:Request,res:Response){
         res.send('user deleted')
     }
+    async check(req:Request, res:Response){
+        res.send('in check')
+    }
 }
 
 export default userControllerClass
