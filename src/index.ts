@@ -1,14 +1,10 @@
-import express from 'express';
-import {config} from 'dotenv' 
-import { appConfig } from './configs';
-import InitApp from './loaders/express';
-import { addRoutes } from './loaders/routes';
+import {config} from 'dotenv'
+config()
+import {expressApp} from "./loaders"
 
-async function init(){
-    config()
-    const app = InitApp(appConfig)
-    addRoutes(app)
+
+function init(){
+    const app = expressApp()
 }
-
 
 init()
