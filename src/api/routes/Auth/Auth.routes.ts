@@ -7,4 +7,4 @@ const authRouter = Router()
 
 authRouter
 .post('/check',authValidator.check,controllers.userController.check)
-.post('/sign-up',authValidator.signUp)
+.post('/sign-up',authValidator.signUp,controllers.userController.signUp)

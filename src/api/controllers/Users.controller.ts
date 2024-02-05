@@ -21,6 +21,9 @@ class userControllerClass {
     async check(req:Request, res:Response){
         res.send('in check')
     }
+    async signUp(req:Request, res:Response){
+        res.send('sign up')
+    }
 }
 
 export default userControllerClass
