@@ -1,5 +1,5 @@
 import express, {Express} from 'express'
-import { appConfig } from '../config/index.config'
+import { appConfig } from '../config'
 export default ():Express => {
     try{
         const app = express()

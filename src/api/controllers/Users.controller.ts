@@ -19,6 +19,7 @@ class userControllerClass {
         res.send('user deleted')
     }
     async check(req:Request, res:Response){
+        console.log('inside herakjhfkjdsa')
         res.send('in check')
     }
     async signUp(req:Request, res:Response){

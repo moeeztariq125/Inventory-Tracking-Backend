@@ -26,5 +26,4 @@ const controllers = {
     userController,
     inventoryController
 }
-
 export {repos, services, controllers}

@@ -10,7 +10,7 @@ interface IDBConfigENV {
     DB_NAME:string;
     DB_PORT:string;
 }
-const DBrequirements:string[] = ['DB_DIALECT','DB_HOSTNAME','DB_USER','DB_PASSWORD','DB_LOGGING','DB_PORT'] 
+const DBrequirements:string[] = ['DB_DIALECT','DB_HOSTNAME','DB_USER','DB_PASSWORD','DB_LOGGING','DB_PORT', 'DB_NAME'] 
 const dbConfig = getConfig<IDBConfigENV>(DBrequirements)
 const config:Options = {
     host:dbConfig.DB_HOSTNAME,

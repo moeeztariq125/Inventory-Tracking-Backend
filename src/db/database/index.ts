@@ -1,33 +1,23 @@
 import { Sequelize, Options } from 'sequelize';
-import { IConfig, dbconfig } from '../../configs';
+import { dbConfig } from '../../config';
 
 class Database {
   private connection: Sequelize | undefined;
 
-  constructor(dbconfig: IConfig) {
-    this.connectToDatabase(dbconfig);
+  constructor(dbConfig: Options) {
+    this.connectToDatabase(dbConfig);
   }
 
-  private async connectToDatabase(dbconfig: IConfig) {
+  private async connectToDatabase(dbConfig: Options) {
     try {
-      const options: Options = {
-        dialect: dbconfig.dialect,
-        pool: {
-          max: dbconfig.pool.max,
-          min: dbconfig.pool.min,
-          acquire: dbconfig.pool.acquire,
-          idle: dbconfig.pool.idle,
-        },
-      };
-
-      this.connection = new Sequelize(dbconfig.url, options);
+      this.connection = new Sequelize(dbConfig);
 
       await this.connection.authenticate();
       console.log('DB connection successfully established');
     } catch (err) {
       console.log('Cannot connect to the database. Retrying in 5 seconds.', err);
       await this.delay(5000);
-      await this.connectToDatabase(dbconfig);
+      await this.connectToDatabase(dbConfig);
     }
   }
 
@@ -50,5 +40,5 @@ class Database {
   }
 }
 
-const db = new Database(dbconfig);
+const db = new Database(dbConfig);
 export default db;

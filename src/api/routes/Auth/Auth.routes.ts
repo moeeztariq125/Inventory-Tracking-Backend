@@ -1,10 +1,11 @@
-import {Router} from 'express'
-import authValidator from '../../validations/Auth.validators'
+import { Router} from 'express'
+import {authValidator} from '../../validations/Auth.validators'
 import { controllers } from '../../../loaders'
 
 
 const authRouter = Router()
-
 authRouter
-.post('/check',authValidator.check,controllers.userController.check)
-.post('/sign-up',authValidator.signUp,controllers.userController.signUp)
+.post('/check', authValidator.getValidator('check'), controllers.userController.check)
+.post('/sign-up',authValidator.getValidator('signup'),controllers.userController.signUp)
+
+export default authRouter
