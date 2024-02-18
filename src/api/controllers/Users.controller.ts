@@ -4,25 +4,33 @@ import { usersServiceClass } from "../services"
 class userControllerClass {
     private usersService:usersServiceClass
     constructor(usersService:usersServiceClass){
+        console.log('inside constructor')
         this.usersService = usersService;
+        console.log(this.usersService.checkUser)
     }
-    async getUser(req:Request,res:Response){
+    getUser = async(req:Request,res:Response) => {
         res.send('user details')
     }
-    async updateUser(req:Request,res:Response){
+    updateUser =  async(req:Request,res:Response) => {
         res.send('user updated')
     }
-    async createUser(req:Request,res:Response){
+    createUser =  async(req:Request,res:Response) => {
         res.send('user Created')
     }
-    async deleteUser(req:Request,res:Response){
+    deleteUser =  async(req:Request,res:Response) => {
         res.send('user deleted')
     }
-    async check(req:Request, res:Response){
-        console.log('inside herakjhfkjdsa')
-        res.send('in check')
+    check =  async(req:Request, res:Response) => {
+        try{
+            const {email} = req.body;
+            const exists = await this.usersService.checkUser(email)
+            if(exists)res.redirect('/sign-in')
+            else res.redirect('/sign-up')
+        }catch(err:any){
+            console.log('ye to error hogya',err.message)
+        }
     }
-    async signUp(req:Request, res:Response){
+    signUp =  async(req:Request, res:Response) => {
         res.send('sign up')
     }
 }

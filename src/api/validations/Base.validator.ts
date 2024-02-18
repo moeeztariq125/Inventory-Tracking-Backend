@@ -10,7 +10,6 @@ class BaseValidatorClass <T extends ValidationObject>{
     }
     getValidator(getValidator:string):RequestHandler{
         const selectedValidation = this.validations[getValidator]
-        console.log(Object.keys(this.validations))
         return validation(selectedValidation)
     }
 }

@@ -56,6 +56,8 @@ class User extends Model<IUserModelAttrs> {
         paranoid: true
     }
   );
+  await User.sync();
+
 })();
 
 

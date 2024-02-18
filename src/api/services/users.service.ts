@@ -16,6 +16,16 @@ class usersServiceClass {
             throw new Error(err)
         }     
     }
+
+    async checkUser(email:string):Promise<boolean>{
+        try{
+            const user = await this.userRepo.findOne({where:{email}})
+            const ret =  user? true: false
+            return ret
+        }catch(err:any){
+            throw new Error(err.message)
+        }
+    }
     
 
 

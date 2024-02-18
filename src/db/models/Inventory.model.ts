@@ -5,20 +5,19 @@ import { IInventoryAttrs } from '../../shared/interfaces';
 
 
 class Inventory extends Model<IInventoryAttrs> {
-    declare id: Number;
-    declare Name: String;
-    declare Description: String;
-    declare Quantity: String;
+    declare id: string;
+    declare Name: string;
+    declare Description: string;
+    declare Quantity: number;
 }
 
 (async()=>{
     const connection = await db.getConnection()
     Inventory.init({
         id:{
-            type:DataTypes.NUMBER,
-            autoIncrement:true,
-            primaryKey:true,
-            unique:true
+            type: DataTypes.UUID,
+            primaryKey: true,
+            allowNull: false,
         },
         Name:{
             type:DataTypes.STRING,
@@ -29,7 +28,7 @@ class Inventory extends Model<IInventoryAttrs> {
             allowNull:false
         },
         Quantity:{
-            type:DataTypes.NUMBER,
+            type:DataTypes.INTEGER,
             allowNull:false,
             defaultValue:0
         }
@@ -39,6 +38,7 @@ class Inventory extends Model<IInventoryAttrs> {
         timestamps:true,
         paranoid:true
     })
+    await Inventory.sync();
 })();
 
 export default Inventory;

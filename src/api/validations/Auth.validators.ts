@@ -25,4 +25,7 @@ const signUpValidator:ValidationChain[] = [
 ]
 
 
-export const authValidator  = new AuthValidator({checkValidator,signUpValidator})
+export const authValidator  = new AuthValidator({
+    'check':checkValidator,
+    'signup':signUpValidator
+})
