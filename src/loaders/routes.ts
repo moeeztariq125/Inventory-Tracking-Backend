@@ -7,5 +7,5 @@ export default (app:Express)=>{
         console.log(req.originalUrl,' called')
         next()
     })
-    app.use('/api/users',authRouter)
+    app.use('/api/users',authRouter.getRouter())
 }

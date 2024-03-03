@@ -15,7 +15,7 @@ const dbConfig = getConfig<IDBConfigENV>(DBrequirements)
 const config:Options = {
     host:dbConfig.DB_HOSTNAME,
     dialect:dbConfig.DB_DIALECT,
-    logging:Boolean(dbConfig.DB_LOGGING),
+    logging:dbConfig.DB_LOGGING.toLowerCase() == 'true'?true:false,
     define:{
         timestamps:true,
         underscored:true
@@ -25,5 +25,4 @@ const config:Options = {
     password:dbConfig.DB_PASSWORD,
     port:Number(dbConfig.DB_PORT)
 }
-
 export default config
