@@ -1,8 +1,8 @@
 interface IInventoryAttrs {
-    id: Number;
-    Name: String;
-    Description: String;
-    Quantity: Number;
+  id: Number;
+  Name: String;
+  Description: String;
+  Quantity: Number;
 }
 
-export default IInventoryAttrs
+export default IInventoryAttrs;

@@ -1,1 +1,1 @@
-export const AGE_LIMIT:number = 18
+export const AGE_LIMIT: number = 18;

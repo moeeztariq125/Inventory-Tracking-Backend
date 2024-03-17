@@ -1,1 +1,1 @@
-export {signupCreationObj as signupCreationObj} from './signup.contracts'
+export { signupCreationObj as signupCreationObj } from "./signup.contracts";

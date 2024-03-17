@@ -1,1 +1,1 @@
-export {default as authRouter} from './Auth.router'
+export { default as authRouter } from "./Auth.router";

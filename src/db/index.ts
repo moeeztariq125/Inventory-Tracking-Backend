@@ -1,4 +1,4 @@
 //-------------User Exports-----------------//
-export {default as User} from './models/User.model'
+export { default as User } from "./models/User.model";
 //-------------Inventory Exports-----------------//
-export {default as Inventory} from './models/Inventory.model'
+export { default as Inventory } from "./models/Inventory.model";

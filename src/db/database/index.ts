@@ -1,5 +1,5 @@
-import { Sequelize, Options } from 'sequelize';
-import { dbConfig } from '../../config';
+import { Sequelize, Options } from "sequelize";
+import { dbConfig } from "../../config";
 
 class Database {
   private connection: Sequelize | undefined;
@@ -13,16 +13,19 @@ class Database {
       this.connection = new Sequelize(dbConfig);
 
       await this.connection.authenticate();
-      console.log('DB connection successfully established');
+      console.log("DB connection successfully established");
     } catch (err) {
-      console.log('Cannot connect to the database. Retrying in 5 seconds.', err);
+      console.log(
+        "Cannot connect to the database. Retrying in 5 seconds.",
+        err
+      );
       await this.delay(5000);
       await this.connectToDatabase(dbConfig);
     }
   }
 
   private delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   public getConnection(): Promise<Sequelize> {
