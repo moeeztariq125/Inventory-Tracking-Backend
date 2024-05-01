@@ -7,28 +7,23 @@ export function requestLogger(
   next: NextFunction
 ): void {
   const originalSend = res.send;
-  const originalJson = res.json;
+  AppLogger.info(
+    `
+      ${loggerEnums.ServiceEnter}-${req.originalUrl}-${req.method}`,
+    {
+      query: req.query,
+      body: req.body,
+      params: req.params
+    }
+  );
 
   res.send = function (this: Response, body?: any): Response {
     AppLogger.info(
       `
-        ${loggerEnums.ServiceEnter}-${req.originalUrl}-${req.method}`,
-      {
-        query: req.query,
-        body: req.body,
-        params: req.params
-      }
-    );
-    return originalSend.call(this, body);
-  };
-
-  res.json = function (this: Response, body?: any): Response {
-    AppLogger.info(
-      `
-      ${loggerEnums.ServiceEnter}-${req.originalUrl}-${req.method}`,
+      ${loggerEnums.ServiceExit}-${req.originalUrl}-${req.method}`,
       body
     );
-    return originalJson.call(this, body);
+    return originalSend.call(this, body);
   };
 
   next();

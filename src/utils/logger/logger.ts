@@ -7,7 +7,7 @@ function timezoned() {
 }
 
 const myFormat = printf(
-  (info) => `${info.level}-${info.timestamp}-${info.message}`
+  (info) => `${info.level}  - ${info.timestamp}  - ${info.message.replace(/\n/g, "")}`
 );
 
 const logger: Logger = createLogger({

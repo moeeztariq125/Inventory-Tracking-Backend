@@ -1,5 +1,6 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { usersServiceClass } from "../services";
+import { UnexpectedError } from "../../errors/UnexpectedError";
 
 class userControllerClass {
   private usersService: usersServiceClass;
@@ -18,23 +19,23 @@ class userControllerClass {
   deleteUser = async (req: Request, res: Response) => {
     res.send("user deleted");
   };
-  check = async (req: Request, res: Response) => {
+  check = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { email } = req.body;
-      const exists = await this.usersService.checkUser(email);
-      let response = {};
-      if (exists) {
-        return res.status(200).json({
-          message: "OK|SUCCESS",
-          redirectTo: "SIGNIN"
-        });
-      }
-      return res.status(200).json({
-        message: "OK|SUCCESS",
-        redirectTo: "SIGNUP"
-      });
-    } catch (err: any) {
-      console.log("ye to error hogya", err);
+      throw new UnexpectedError("ye unexpected tha");
+      // const exists = await this.usersService.checkUser(email);
+      // if (exists) {
+      //   return res.status(200).json({
+      //     message: "OK|SUCCESS",
+      //     redirectTo: "SIGNIN"
+      //   });
+      // }
+      // return res.status(200).json({
+      //   message: "OK|SUCCESS",
+      //   redirectTo: "SIGNUP"
+      // });
+    } catch (err:any) {
+      next(err);
     }
   };
   signUp = async (req: Request, res: Response) => {
