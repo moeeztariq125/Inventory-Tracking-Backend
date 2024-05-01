@@ -1,6 +1,7 @@
-import { IUserModelAttrs } from "../../shared/interfaces";
+import { IUserModelAttrs, signUpStatus } from "../../shared/interfaces";
 import { UserRepository } from "../../repositories";
 import { signupCreationObj } from "../contracts/Users.contracts";
+import { GenerateOTP } from "../../utils";
 
 class usersServiceClass {
   private userRepo: UserRepository;
@@ -31,8 +32,22 @@ class usersServiceClass {
       });
       return user ? true : false;
     } catch (err: any) {
-      throw new Error(err.message);
+      throw new Error(err);
     }
+  }
+  /**
+   * Method to create user in database and send email
+   * @param email
+   * @returns void
+   */
+  async createUnverifiedUser(email: string): Promise<void> {
+    const otp = GenerateOTP();
+    const user = await this.userRepo.create({
+      email,
+      signupStatus: signUpStatus.PENDING_VERIFICATION,
+      otp: otp.hashOTP()
+    });
+    console.log(`send otp mail - ${otp.getOTP}`);
   }
 }
 

@@ -9,7 +9,7 @@ const checkValidator: ValidationChain[] = [
   body("email").isEmail().withMessage("Please enter a valid Email").bail()
 ];
 
-const signUpValidator: ValidationChain[] = [
+const signUpCompleteValidator: ValidationChain[] = [
   body("email").isEmail().withMessage("Please enter a valid Email").bail(),
   body("firstName")
     .isString()
@@ -34,7 +34,12 @@ const signUpValidator: ValidationChain[] = [
   })
 ];
 
+const signUpValidator: ValidationChain[] = [
+  body("email").isEmail().withMessage("Please enter a valid Email").bail()
+];
+
 export const authValidator = new AuthValidator({
   check: checkValidator,
-  signup: signUpValidator
+  signup: signUpValidator,
+  "signup-complete": signUpCompleteValidator
 });

@@ -1,6 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import db from "../database"; // Import the database module
-import { IUserModelAttrs } from "../../shared/interfaces";
+import { IUserModelAttrs, signUpStatus } from "../../shared/interfaces";
 
 class User extends Model<IUserModelAttrs> {
   declare userID: string;
@@ -11,7 +11,7 @@ class User extends Model<IUserModelAttrs> {
   declare profilePicture: string;
   declare email: string;
   declare otp: string;
-  declare signupStatus: boolean;
+  declare signupStatus: signUpStatus;
 }
 (async () => {
   const connection = await db.getConnection();
@@ -44,7 +44,8 @@ class User extends Model<IUserModelAttrs> {
         type: DataTypes.STRING
       },
       signupStatus: {
-        type: DataTypes.STRING
+        type: DataTypes.ENUM,
+        values: Object.values(signUpStatus)
       }
     },
     {

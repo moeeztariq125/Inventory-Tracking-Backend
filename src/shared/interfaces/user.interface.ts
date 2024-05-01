@@ -1,3 +1,9 @@
+
+export enum signUpStatus {
+  ACTIVE = "active",
+  PENDING_VERIFICATION = "pending_verification"
+}
+
 interface IUserModelAttrs {
   userID: string;
   firstName: string;
@@ -7,7 +13,7 @@ interface IUserModelAttrs {
   profilePicture: string;
   email: string;
   otp: string;
-  signupStatus: boolean;
+  signupStatus: signUpStatus;
 }
 
 export default IUserModelAttrs;

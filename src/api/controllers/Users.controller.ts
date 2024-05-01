@@ -22,24 +22,35 @@ class userControllerClass {
   check = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { email } = req.body;
-      throw new UnexpectedError("ye unexpected tha");
-      // const exists = await this.usersService.checkUser(email);
-      // if (exists) {
-      //   return res.status(200).json({
-      //     message: "OK|SUCCESS",
-      //     redirectTo: "SIGNIN"
-      //   });
-      // }
-      // return res.status(200).json({
-      //   message: "OK|SUCCESS",
-      //   redirectTo: "SIGNUP"
-      // });
-    } catch (err:any) {
+      const exists = await this.usersService.checkUser(email);
+      if (exists) {
+        return res.status(200).json({
+          message: "OK|SUCCESS",
+          redirectTo: "SIGNIN"
+        });
+      }
+      return res.status(200).json({
+        message: "OK|SUCCESS",
+        redirectTo: "SIGNUP"
+      });
+    } catch (err: any) {
       next(err);
     }
   };
-  signUp = async (req: Request, res: Response) => {
-    res.send("sign up");
+  signUp = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { email } = req.body;
+      const exists = await this.usersService.checkUser(email);
+      if (exists) {
+        return res.status(200).json({
+          message: "OK|SUCCESS",
+          redirectTo: "SIGNIN"
+        });
+      }
+      await this.usersService.createUnverifiedUser(email);
+    } catch (err: any) {
+      next(err);
+    }
   };
 }
 
