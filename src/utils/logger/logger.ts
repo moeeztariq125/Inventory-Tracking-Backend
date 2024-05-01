@@ -1,16 +1,17 @@
-import { existsSync, mkdirSync } from "fs";
 import { Logger, createLogger, format, transports } from "winston";
 
-const logDir = "./logs";
+const { printf, combine, timestamp } = format;
 
-if (!existsSync(logDir)) mkdirSync(logDir);
+function timezoned() {
+  return new Date().toLocaleString("en-US");
+}
+
+const myFormat = printf(
+  (info) => `${info.level}-${info.timestamp}-${info.message}`
+);
 
 const logger: Logger = createLogger({
-  format: format.json(),
-  transports: [
-    new transports.Console(),
-    new transports.File({ filename: `${logDir}/combined.log` })
-  ]
+  format: combine(timestamp({ format: timezoned }), myFormat),
+  transports: [new transports.Console()]
 });
-
 export default logger;

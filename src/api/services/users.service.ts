@@ -25,9 +25,11 @@ class usersServiceClass {
    */
   async checkUser(email: string): Promise<boolean> {
     try {
-      const user = await this.userRepo.findOne({ where: { email } });
-      const ret = user ? true : false;
-      return ret;
+      const user = await this.userRepo.findOne({
+        where: { email },
+        attributes: ["email"]
+      });
+      return user ? true : false;
     } catch (err: any) {
       throw new Error(err.message);
     }

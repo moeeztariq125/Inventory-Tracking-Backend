@@ -34,7 +34,7 @@ class userControllerClass {
         redirectTo: "SIGNUP"
       });
     } catch (err: any) {
-      console.log("ye to error hogya", err.message);
+      console.log("ye to error hogya", err);
     }
   };
   signUp = async (req: Request, res: Response) => {
