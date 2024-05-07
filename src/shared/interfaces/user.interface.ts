@@ -16,4 +16,12 @@ interface IUserModelAttrs {
   signupStatus: signUpStatus;
 }
 
+
+interface IUserDTO {
+  userID: string;
+  firstName: string;
+  lastName: string;
+  profilePicture: string;
+  signupStatus: signUpStatus
+}
 export default IUserModelAttrs;

@@ -8,5 +8,3 @@ export interface signupCreationObj {
   role: string;
   signupStatus: signUpStatus;
 }
-
-export interface signupReturnObj {}

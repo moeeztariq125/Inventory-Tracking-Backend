@@ -14,7 +14,12 @@ authRouter
     "/sign-up",
     authValidator.getValidator("signup"),
     controllers.userController.signUp
-  );
+  )
+  .post(
+    "/verify-otp",
+    authValidator.getValidator('verifyOTP'),
+    controllers.userController.verifyOtp
+  )
 
 class AuthRouter extends BaseRouter {
   constructor(router: Router[] | Router) {

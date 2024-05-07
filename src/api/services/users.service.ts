@@ -35,19 +35,40 @@ class usersServiceClass {
       throw new Error(err);
     }
   }
+
+  async checkAndFetchUser(email: string): Promise<Partial<IUserModelAttrs>> {
+    try {
+      const user = await this.userRepo.findOne({
+        where: { email },
+      });
+      return user
+    } catch (err: any) {
+      throw new Error(err);
+    }
+  }
   /**
    * Method to create user in database and send email
    * @param email
    * @returns void
    */
-  async createUnverifiedUser(email: string): Promise<void> {
+  async createUnverifiedUser(email: string): Promise<{userCreation: Boolean, OTP:Boolean}> {
     const otp = GenerateOTP();
     const user = await this.userRepo.create({
       email,
       signupStatus: signUpStatus.PENDING_VERIFICATION,
       otp: otp.hashOTP()
     });
+    if(!user){
+      return {
+        userCreation:false,
+        OTP:false
+      } //user creation failed
+    }
     console.log(`send otp mail - ${otp.getOTP}`);
+    return {
+      userCreation:true,
+      OTP:true
+    }
   }
 }
 

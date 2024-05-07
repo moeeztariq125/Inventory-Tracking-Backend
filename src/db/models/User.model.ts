@@ -20,7 +20,8 @@ class User extends Model<IUserModelAttrs> {
       userID: {
         type: DataTypes.UUID,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4,
       },
       firstName: {
         type: DataTypes.STRING
