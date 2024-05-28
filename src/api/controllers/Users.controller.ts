@@ -48,18 +48,19 @@ class userControllerClass {
           redirectTo: "SIGNIN"
         });
       }
-      const userCreationResponse = await this.usersService.createUnverifiedUser(email);
+      const userCreationResponse =
+        await this.usersService.createUnverifiedUser(email);
       res.status(200).json({
-        message:'OK|SUCCESS',
+        message: "OK|SUCCESS",
         ...userCreationResponse
-      })
+      });
     } catch (err: any) {
       next(err);
     }
   };
   verifyOtp = async (req: Request, res: Response, next: NextFunction) => {
-    try{
-      const {email, OTP} = req.body;
+    try {
+      const { email, OTP } = req.body;
       const exists = await this.usersService.checkAndFetchUser(email);
       if (!exists) {
         return res.status(200).json({
@@ -67,24 +68,24 @@ class userControllerClass {
           redirectTo: "SIGNUP"
         });
       }
-      const check = GenerateOTP(OTP).compareHash(exists.otp ?? '')
-      if (!check){
+      const check = GenerateOTP(OTP).compareHash(exists.otp ?? "");
+      if (!check) {
         res.status(401).json({
-          errors:[
+          errors: [
             {
-              message:'Your OTP did not match!'
+              message: "Your OTP did not match!"
             }
           ]
-        })
+        });
       }
       res.status(200).json({
-        message:'OK|SUCCESS',
-        response:'OTP Successfully Verified!',
-      })
-    }catch(err: any){
-      next(err)
+        message: "OK|SUCCESS",
+        response: "OTP Successfully Verified!"
+      });
+    } catch (err: any) {
+      next(err);
     }
-  }
+  };
 }
 
 export default userControllerClass;

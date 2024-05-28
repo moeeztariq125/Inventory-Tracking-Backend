@@ -10,19 +10,19 @@ export class AppLogger {
     const seen = new WeakSet();
 
     return (function (key, value) {
-      let newValue = value
+      let newValue = value;
       if (typeof value === "object" && value !== null) {
         if (seen.has(value)) {
           newValue = {};
         }
         seen.add(value);
       }
-      if(value instanceof Error) {
-        newValue ={
+      if (value instanceof Error) {
+        newValue = {
           message: value.message,
           stack: value.stack,
           name: value.name
-        } 
+        };
       }
       return newValue;
     })(key, value);

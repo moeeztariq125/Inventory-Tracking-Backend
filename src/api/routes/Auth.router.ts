@@ -17,9 +17,9 @@ authRouter
   )
   .post(
     "/verify-otp",
-    authValidator.getValidator('verifyOTP'),
+    authValidator.getValidator("verifyOTP"),
     controllers.userController.verifyOtp
-  )
+  );
 
 class AuthRouter extends BaseRouter {
   constructor(router: Router[] | Router) {

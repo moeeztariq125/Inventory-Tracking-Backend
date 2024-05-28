@@ -1,2 +1,2 @@
-export {AppLogger} from './AppLogger'
-export {loggerEnums} from './loggerEnums'
+export { AppLogger } from "./AppLogger";
+export { loggerEnums } from "./loggerEnums";

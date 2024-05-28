@@ -40,8 +40,11 @@ const signUpValidator: ValidationChain[] = [
 
 const verifyOtpValidator: ValidationChain[] = [
   body("email").isEmail().withMessage("Please enter a valid Email").bail(),
-  body("OTP").isLength({max:6,min:6}).withMessage("Please enter a valid OTP").bail()
-]
+  body("OTP")
+    .isLength({ max: 6, min: 6 })
+    .withMessage("Please enter a valid OTP")
+    .bail()
+];
 
 export const authValidator = new AuthValidator({
   check: checkValidator,

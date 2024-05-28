@@ -27,14 +27,14 @@ class OTP {
     hash.update(this.otp);
     return hash.digest("hex");
   }
-  private hashOutsideOTP(OTP:string):string{
+  private hashOutsideOTP(OTP: string): string {
     const hash = crypto.createHash("sha256");
     hash.update(OTP);
     return hash.digest("hex");
   }
-  
-  compareHash(toCompare: string):Boolean{
-    return this.hashOTP() === this.hashOutsideOTP(toCompare)
+
+  compareHash(toCompare: string): Boolean {
+    return this.hashOTP() === this.hashOutsideOTP(toCompare);
   }
 }
 

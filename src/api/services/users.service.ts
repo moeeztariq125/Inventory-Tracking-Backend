@@ -39,9 +39,9 @@ class usersServiceClass {
   async checkAndFetchUser(email: string): Promise<Partial<IUserModelAttrs>> {
     try {
       const user = await this.userRepo.findOne({
-        where: { email },
+        where: { email }
       });
-      return user
+      return user;
     } catch (err: any) {
       throw new Error(err);
     }
@@ -51,24 +51,27 @@ class usersServiceClass {
    * @param email
    * @returns void
    */
-  async createUnverifiedUser(email: string): Promise<{userCreation: Boolean, OTP:Boolean}> {
+  async createUnverifiedUser(
+    email: string
+  ): Promise<{ userCreation: Boolean; OTP: Boolean; otpValue?: string }> {
     const otp = GenerateOTP();
     const user = await this.userRepo.create({
       email,
       signupStatus: signUpStatus.PENDING_VERIFICATION,
       otp: otp.hashOTP()
     });
-    if(!user){
+    if (!user) {
       return {
-        userCreation:false,
-        OTP:false
-      } //user creation failed
+        userCreation: false,
+        OTP: false
+      }; //user creation failed
     }
     console.log(`send otp mail - ${otp.getOTP}`);
     return {
-      userCreation:true,
-      OTP:true
-    }
+      userCreation: true,
+      OTP: true,
+      otpValue: otp.getOTP()
+    };
   }
 }
 

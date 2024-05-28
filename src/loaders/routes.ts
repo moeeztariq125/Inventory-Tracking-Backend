@@ -1,5 +1,5 @@
 import { Express, NextFunction, Request, Response } from "express";
-import routers  from "../api/routes";
+import routers from "../api/routes";
 import middlewares from "../middlewares";
 
 export default (app: Express) => {
@@ -9,6 +9,5 @@ export default (app: Express) => {
   });
   app.use(middlewares.requestLogger);
   app.use("/api/users", routers.authRouter.getRouter());
-  app.use(middlewares.GlobalErrorHandler)
-
+  app.use(middlewares.GlobalErrorHandler);
 };

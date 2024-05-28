@@ -2,7 +2,6 @@ import { InventoryRepository, UserRepository } from "../repositories";
 import { UserController, InventoryController } from "../api/controllers";
 import { usersServiceClass, inventoryServiceClass } from "../api/services";
 
-
 //Doing dependency injection
 //----------Defining Repos--------------------//
 const userRepo = new UserRepository();
